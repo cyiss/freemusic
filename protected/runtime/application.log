@@ -1,0 +1,30 @@
+2013/06/29 14:37:05 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/gii/GiiModule.php:168
+Stack trace:
+#0 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#2 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /home/cyiss/tmp/freemusic/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=gii
+---
+2013/06/29 14:37:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/gii/GiiModule.php:168
+Stack trace:
+#0 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#2 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /home/cyiss/tmp/freemusic/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=gii
+---
+2013/06/29 14:38:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/gii/GiiModule.php:168
+Stack trace:
+#0 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#2 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /home/cyiss/tmp/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /home/cyiss/tmp/freemusic/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=gii
+---

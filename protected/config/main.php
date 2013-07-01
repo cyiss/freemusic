@@ -26,6 +26,13 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','192.168.56.1'),
 		),
+		'api',
+		'ntadmin'=>array(
+			'username'=>'ntadmin'
+			'password'=>'Ft05ab'
+			'ipFilters'=>array('127.0.0.1','192.168.56.1'),
+		),
+}
 	),
 
 	// application components

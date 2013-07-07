@@ -67,12 +67,12 @@ class Help extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'content' => 'Content',
-			'is_valid' => 'Is Valid',
-			'sort_index' => 'Sort Index',
-			'last_update' => 'Last Update',
-			'create_time' => 'Create Time',
+			'title' => 'タイトル',
+			'content' => '内容',
+			'is_valid' => '表示/非表示',
+			'sort_index' => '順番',
+			'last_update' => '更新日時',
+			'create_time' => '登録日時',
 		);
 	}
 
@@ -98,5 +98,10 @@ class Help extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getIsValid()
+	{
+		return $this->is_valid ? "表示" : "非表示";
 	}
 }

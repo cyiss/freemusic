@@ -36,21 +36,22 @@
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
-	</div><!-- mainmenu -->
+	</div><!-- mainmenu -->	
+	
+	
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-
+ 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by NewsTech Inc.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->

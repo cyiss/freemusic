@@ -7,8 +7,8 @@
  * @property integer $id
  * @property string $title
  * @property string $content
- * @property string $start_time
- * @property string $end_time
+ * @property string $start_date
+ * @property string $end_date
  * @property integer $is_valid
  * @property integer $sort_index
  * @property string $last_update
@@ -44,10 +44,10 @@ class Notice extends CActiveRecord
 		return array(
 			array('is_valid, sort_index', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>100),
-			array('content, start_time, end_time, last_update, create_time', 'safe'),
+			array('content, start_date, end_date, last_update, create_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content, start_time, end_time, is_valid, sort_index, last_update, create_time', 'safe', 'on'=>'search'),
+			array('id, title, content, start_date, end_date, is_valid, sort_index, last_update, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,14 +69,14 @@ class Notice extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'content' => 'Content',
-			'start_time' => 'Start Time',
-			'end_time' => 'End Time',
-			'is_valid' => 'Is Valid',
-			'sort_index' => 'Sort Index',
-			'last_update' => 'Last Update',
-			'create_time' => 'Create Time',
+			'title' => 'タイトル',
+			'content' => '内容',
+			'start_date' => '開始日',
+			'end_date' => '終了日',
+			'is_valid' => '表示/非表示',
+			'sort_index' => '順番',
+			'last_update' => '更新日時',
+			'create_time' => '登録日時',
 		);
 	}
 
@@ -94,8 +94,8 @@ class Notice extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);
-		$criteria->compare('start_time',$this->start_time,true);
-		$criteria->compare('end_time',$this->end_time,true);
+		$criteria->compare('start_date',$this->start_date,true);
+		$criteria->compare('end_date',$this->end_date,true);
 		$criteria->compare('is_valid',$this->is_valid);
 		$criteria->compare('sort_index',$this->sort_index);
 		$criteria->compare('last_update',$this->last_update,true);
@@ -104,5 +104,10 @@ class Notice extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getIsValid()
+	{
+		return $this->is_valid ? "表示" : "非表示";
 	}
 }

@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Free Music',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -28,11 +28,10 @@ return array(
 		),
 		'api',
 		'ntadmin'=>array(
-			'username'=>'ntadmin'
-			'password'=>'Ft05ab'
-			'ipFilters'=>array('127.0.0.1','192.168.56.1'),
+			// 'username'=>'ntadmin',
+			// 'password'=>'Ft05ab',
+			'ipFilters'=>array('127.0.0.1','192.168.56.*'),
 		),
-}
 	),
 
 	// application components
@@ -74,7 +73,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, info',
 				),
 				// uncomment the following to show log messages on web pages
 				/*

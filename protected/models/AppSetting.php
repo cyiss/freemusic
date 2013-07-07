@@ -13,6 +13,9 @@
  */
 class AppSetting extends CActiveRecord
 {
+	const TYPE_APP_SETTING_BOOL_VALUE	 = 1;
+	const TYPE_APP_SETTING_STRING_VALUE = 2;
+	const TYPE_APP_SETTING_INT_VALUE		 = 3;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -66,11 +69,11 @@ class AppSetting extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'type' => 'Type',
-			'fmvalue' => 'Fmvalue',
-			'last_update' => 'Last Update',
-			'create_time' => 'Create Time',
+			'name' => '名称',
+			'type' => 'タイプ',
+			'fmvalue' => '値',
+			'last_update' => '更新日時',
+			'create_time' => '登録日時',
 		);
 	}
 
@@ -95,5 +98,58 @@ class AppSetting extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getTypeList()
+	{
+		return array (
+				self::TYPE_APP_SETTING_BOOL_VALUE => '表示/非表示',
+				self::TYPE_APP_SETTING_STRING_VALUE => '画像',
+				self::TYPE_APP_SETTING_INT_VALUE => 'INT',
+				);
+	}
+	
+	public function getType()
+	{
+		$type = "";
+		switch ($this->type)
+		{
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$type = "表示/非表示";
+				break;
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$type = "画像";
+				break;
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$type = "INT"; 
+				break;
+			default:
+				$type = "未定義";
+				break;
+		}
+		
+		return $type;
+	}
+	
+	public function getFMValue()
+	{
+		$value = "";
+		
+		switch ($this->type)
+		{
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$value = $this->fmvalue ? "表示" : "非表示";
+				break;
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$value = $this->fmvalue;
+				break;
+			case self::TYPE_APP_SETTING_BOOL_VALUE:
+				$value = $this->fmvalue;
+				break;
+			default:
+				$value = $this->fmvalue;
+				break;
+		}
+		return $value;
 	}
 }

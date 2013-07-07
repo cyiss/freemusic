@@ -227,3 +227,75 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+/* for menu & submenu */
+#mainmenu ul 
+{
+	list-style: none; 
+	margin: 0; 
+	padding: 0; 
+	position: relative;
+	height: 30px; 
+}
+ 
+#mainmenu ul li 
+{ 
+	display: block; 
+	height: 30px; 
+	float: left; 
+	overflow: visible; 
+}
+
+#mainmenu ul li:hover > ul
+{
+	display: block;
+}
+ 
+#mainmenu ul li a
+{
+	float: left; 
+	display: block;
+}
+ 
+#mainmenu ul li ul
+{
+	display: none;
+	position: absolute;
+	top: 100%;
+  background:white url(bg.gif) repeat-x left top;
+  color: #000;
+  height: auto;
+}
+ 
+#mainmenu ul li ul li a
+{
+	color: #fff;
+	padding: 5px 14px;
+	display: block;
+}
+ 
+#mainmenu ul li ul li.active a,
+#mainmenu ul li ul li a:hover 
+{
+	color: #6399cd;
+  background-color:#EFF4FA;
+  text-decoration:none;
+}
+
+div.rb
+{
+	margin-top: 5px;
+	margin-left: 10px;
+	display: inline-block;
+}
+div.rb span > label
+{
+	float:left;
+	text-align:left;
+	margin-left: 2px;
+	width: 70px;
+}
+div.rb span > input
+{
+	float: left;
+}

@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $name
  * @property integer $type
+ * @property integer $genre_id
  * @property string $content
  * @property integer $price
  * @property string $icon
@@ -23,6 +24,9 @@
  */
 class Item extends CActiveRecord
 {
+	const TYPE_ITEM_APP					= 1;
+	const TYPE_ITEM_CD_MUSIC		= 2;
+	const TYPE_ITEM_VIDEO_MUSIC = 3;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -49,14 +53,14 @@ class Item extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type, price, rate, status, daily_quota, weekly_quota, amount', 'numerical', 'integerOnly'=>true),
+			array('type, genre_id, price, rate, status, daily_quota, weekly_quota, amount', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
 			array('icon', 'length', 'max'=>255),
 			array('inventory', 'length', 'max'=>45),
 			array('content, start_date, end_date, last_update, create_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, type, content, price, icon, rate, start_date, end_date, status, daily_quota, weekly_quota, amount, inventory, last_update, create_time', 'safe', 'on'=>'search'),
+			array('id, name, type, genre_id, content, price, icon, rate, start_date, end_date, status, daily_quota, weekly_quota, amount, inventory, last_update, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,21 +82,22 @@ class Item extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'type' => 'Type',
-			'content' => 'Content',
-			'price' => 'Price',
-			'icon' => 'Icon',
-			'rate' => 'Rate',
-			'start_date' => 'Start Date',
-			'end_date' => 'End Date',
-			'status' => 'Status',
-			'daily_quota' => 'Daily Quota',
-			'weekly_quota' => 'Weekly Quota',
-			'amount' => 'Amount',
-			'inventory' => 'Inventory',
-			'last_update' => 'Last Update',
-			'create_time' => 'Create Time',
+			'name' => 'アイテム名',
+			'type' => 'タイプ',
+			'genre_id' => 'ジャンル',
+			'content' => '内容',
+			'price' => '値段',
+			'icon' => 'アイコン',
+			'rate' => 'レート',
+			'start_date' => '開始日',
+			'end_date' => '終了日',
+			'status' => 'ステータス',
+			'daily_quota' => '日上限',
+			'weekly_quota' => '週上限',
+			'amount' => '総量',
+			'inventory' => '残り数',
+			'last_update' => '更新日時',
+			'create_time' => '登録日時',
 		);
 	}
 
@@ -110,6 +115,7 @@ class Item extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('type',$this->type);
+		$criteria->compare('genre_id',$this->genre_id);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('icon',$this->icon,true);
@@ -127,5 +133,27 @@ class Item extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getTypeList()
+	{
+		return array (
+				self::TYPE_ITEM_APP => 'アプリ',
+				self::TYPE_ITEM_CD_MUSIC => 'CD音楽',
+				self::TYPE_ITEM_VIDEO_MUSIC => 'MUSICビデオ',
+		);
+	}
+	
+	public function getType()
+	{
+		$type_list = $this->getTypeList();
+		$type = isset($type_list[$this->type]) ? $type_list[$this->type] : "未定義"; 
+	
+		return $type;
+	}
+	
+	public function getIcon()
+	{
+		return "/images/item/icon/" . $this->id . ".png";
 	}
 }

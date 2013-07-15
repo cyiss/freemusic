@@ -1,6 +1,6 @@
 <?php
 
-class ItemController extends AController
+class GenreController extends AController
 {
 	/**
 	 * Displays a particular model.
@@ -19,25 +19,16 @@ class ItemController extends AController
 	 */
 	public function actionCreate()
 	{
-		$model=new Item;
+		$model=new Genre;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Item']))
+		if(isset($_POST['Genre']))
 		{
-			$model->attributes=$_POST['Item'];
-			// アップロード画像のインスタンス
-			$model->image=CUploadedFile::getInstance($model, 'image');
-			$savedFileName = $model->getSavedPathForIcon() . $model->id . '.' . $model->image->getExtensionName();
-			$model->image->saveAs($savedFileName);
-
-			if($model->save()) {
-				$model->icon = $model->id . "." . $model->image->getExtensionName();
-				// no matter save is succeed or not, go to view
-				$model->save();
+			$model->attributes=$_POST['Genre'];
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-			}
 		}
 
 		$this->render('create',array(
@@ -57,18 +48,9 @@ class ItemController extends AController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Item']))
+		if(isset($_POST['Genre']))
 		{
-			$model->attributes=$_POST['Item'];
-
-			// アップロード画像のインスタンス
-			$model->image=CUploadedFile::getInstance($model, 'image');
-			if( !empty($model->image) ) {
-				$savedFileName = $model->getSavedPathForIcon() . $model->id . '.' . $model->image->getExtensionName();
-				$model->image->saveAs($savedFileName);
-				$model->icon = $model->id . "." . $model->image->getExtensionName();
-			}
-
+			$model->attributes=$_POST['Genre'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -105,10 +87,10 @@ class ItemController extends AController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Item('search');
+		$model=new Genre('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Item']))
-			$model->attributes=$_GET['Item'];
+		if(isset($_GET['Genre']))
+			$model->attributes=$_GET['Genre'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -119,12 +101,12 @@ class ItemController extends AController
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Item the loaded model
+	 * @return Genre the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Item::model()->findByPk($id);
+		$model=Genre::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -132,11 +114,11 @@ class ItemController extends AController
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Item $model the model to be validated
+	 * @param Genre $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='item-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='genre-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

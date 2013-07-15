@@ -80,12 +80,13 @@ caption {background:#eee;}
 /* grid.css */
 .container {width:950px;margin:0 auto;}
 .column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
+.rcolumn, .rspan-1, .rspan-2, .rspan-3, .rspan-4, .rspan-5, .rspan-6, .rspan-7, .rspan-8, .rspan-9, .rspan-10, .rspan-11, .rspan-12, .rspan-13, .rspan-14, .rspan-15, .rspan-16, .rspan-17, .rspan-18, .rspan-19, .rspan-20, .rspan-21, .rspan-22, .rspan-23, .rspan-24 {float:right;margin-right:10px;}
 .last {margin-right:0;}
 .span-1 {width:30px;}
 .span-2 {width:70px;}
 .span-3 {width:110px;}
 .span-4 {width:150px;}
-.span-5 {width:190px;}
+.span-5, .rspan-5 {width:190px;}
 .span-6 {width:230px;}
 .span-7 {width:270px;}
 .span-8 {width:310px;}

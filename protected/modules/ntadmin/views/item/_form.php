@@ -9,6 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'item-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -29,7 +30,11 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'genre_id'); ?>
-		<?php echo $form->dropDownList($model,'genre_id', CHtml::listData(Genre::model()->findAll(),'id', 'name')); ?>
+		<?php echo $form->dropDownList(	$model, 'genre_id',
+										CHtml::listData(
+											Genre::model()->findAll(), 
+											'id',
+											'name')); ?>
 		<?php echo $form->error($model,'genre_id'); ?>
 	</div>
 	
@@ -46,9 +51,12 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'icon'); ?>
-		<?php echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'icon'); ?>
+		<?php echo $form->labelEx($model,'image'); ?>
+		<?php if(!empty($model->icon)) { ?>
+			<img src="<?php echo $model->getIcon(); ?>" width='57' height='57'>
+		<?php } ?>
+		<?php echo $form->fileField($model,'image'); ?>
+		<?php echo $form->error($model,'image'); ?>
 	</div>
 
 	<div class="row">
@@ -59,19 +67,50 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'start_date'); ?>
-		<?php echo $form->textField($model,'start_date'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+				'model' => $model,
+				'attribute' => 'start_date',
+				'language' => 'ja',
+				'i18nScriptFile' => 'jquery.ui.datepicker-ja.js',
+				'options'=>array(
+						'dateFormat' => 'yy-mm-dd',
+				),
+				'htmlOptions' => array(
+							'size' => '19',
+							'maxLength' => '19',
+						),
+				));?>
 		<?php echo $form->error($model,'start_date'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'end_date'); ?>
-		<?php echo $form->textField($model,'end_date'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+				'model' => $model,
+				'attribute' => 'end_date',
+				'language' => 'ja',
+				'i18nScriptFile' => 'jquery.ui.datepicker-ja.js',
+				'options'=>array(
+						'dateFormat' => 'yy-mm-dd',
+				),
+				'htmlOptions' => array(
+							'size' => '19',
+							'maxLength' => '19',
+						),
+				));?>
 		<?php echo $form->error($model,'end_date'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
+		<div class="rb">
+		<?php echo $form->radioButtonList($model, 'status', array(
+				'0' => '非表示',
+				'1' => '表示',
+				), array(
+						'separator'=>'')
+				); ?>
+		</div>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
@@ -99,20 +138,8 @@
 		<?php echo $form->error($model,'inventory'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'last_update'); ?>
-		<?php echo $form->textField($model,'last_update'); ?>
-		<?php echo $form->error($model,'last_update'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_time'); ?>
-		<?php echo $form->textField($model,'create_time'); ?>
-		<?php echo $form->error($model,'create_time'); ?>
-	</div>
-
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '登録' : '更新'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

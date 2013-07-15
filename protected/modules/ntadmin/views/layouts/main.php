@@ -57,7 +57,8 @@
 	      'linkOptions'=>array('id'=>'menuItem'),
 	      'itemOptions'=>array('id'=>'itemItem'),
 	      'items'=>array(
-	        array('label'=>'一覧', 'url'=>array('/ntadmin/item/index')),
+	        array('label'=>'一覧', 'url'=>array('/ntadmin/item/admin')),
+	        array('label'=>'ジャンル', 'url'=>array('/ntadmin/genre/admin')),
 	      ),
 	    ),
 	  	array(

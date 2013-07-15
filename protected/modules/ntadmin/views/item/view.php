@@ -11,7 +11,8 @@ $this->menu=array(
 	array('label'=>'一覧', 'url'=>array('admin')),
 	array('label'=>'新規', 'url'=>array('create')),
 	array('label'=>'編集', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'削除', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'本当に削除しますか?')),
+	array('label'=>'削除', 'url'=>'#', 'linkOptions'=>
+			array('submit'=>array('delete','id'=>$model->id),'confirm'=>'本当に削除しますか?')),
 );
 ?>
 
@@ -22,11 +23,26 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
-		'type',
-		'genre_id',
+		array(
+			'name' => 'type',
+			'vlaue' => $model->getType(),
+			),
+		array(
+			'name' => 'genre_id',
+			'value' => CHtml::value(Genre::model()->find(array(
+    					'select'=>'name',
+    					'condition'=>'id=:genreID',
+    					'params'=>array(':genreID'=>$model->genre_id),
+    					)), 'name'),
+			),
 		'content',
 		'price',
-		'icon',
+		array(
+			'name' => 'icon',
+			'type' => 'raw',
+			'value' => html_entity_decode(
+					CHtml::image($model->getIcon(),'アイコン', array('width'=>57, 'height'=>57))),
+			),
 		'rate',
 		'start_date',
 		'end_date',

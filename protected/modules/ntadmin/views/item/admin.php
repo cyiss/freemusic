@@ -38,16 +38,24 @@ $('.search-form form').submit(function(){
 		'genre_id',
 		'content',
 		'price',
-		'icon',
-		/*
+		array(
+			'name' => 'icon',
+			'type' => 'raw',
+			'value' => 'html_entity_decode(
+					CHtml::image($data->getIcon(), "アイコン", array("width"=>57, "height"=>57)))',
+			),
 		'rate',
 		'start_date',
 		'end_date',
-		'status',
+		array(
+				'name' => 'status',
+				'value' => '$data->getStatus()',
+			),
 		'daily_quota',
 		'weekly_quota',
 		'amount',
 		'inventory',
+		/*
 		'last_update',
 		'create_time',
 		*/

@@ -24,9 +24,12 @@
  */
 class Item extends CActiveRecord
 {
-	const TYPE_ITEM_APP					= 1;
-	const TYPE_ITEM_CD_MUSIC		= 2;
+	const TYPE_ITEM_APP			= 1;
+	const TYPE_ITEM_CD_MUSIC	= 2;
 	const TYPE_ITEM_VIDEO_MUSIC = 3;
+	const SAVED_PATH_FOR_ICON   = '/images/item/icon/';
+	public $image;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -55,7 +58,8 @@ class Item extends CActiveRecord
 		return array(
 			array('type, genre_id, price, rate, status, daily_quota, weekly_quota, amount', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
-			array('icon', 'length', 'max'=>255),
+			array('icon, image', 'length', 'max'=>255, 'on'=>'insert, update'),
+			array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'on'=>'update'),
 			array('inventory', 'length', 'max'=>45),
 			array('content, start_date, end_date, last_update, create_time', 'safe'),
 			// The following rule is used by search().
@@ -154,6 +158,16 @@ class Item extends CActiveRecord
 	
 	public function getIcon()
 	{
-		return "/images/item/icon/" . $this->id . ".png";
+		return self::SAVED_PATH_FOR_ICON . $this->icon;
+	}
+
+	public function getSavedPathForIcon()
+	{
+		return dirname(Yii::app()->request->scriptFile) . self::SAVED_PATH_FOR_ICON;
+	}
+
+	public function getStatus()
+	{
+		return $this->status ? "表示" : "非表示";
 	}
 }

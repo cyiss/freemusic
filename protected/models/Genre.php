@@ -65,10 +65,10 @@ class Genre extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'type' => 'Type',
-			'sort_index' => 'Sort Index',
-			'last_update' => 'Last Update',
+			'name' => 'ジャンル名',
+			'type' => 'タイプ',
+			'sort_index' => '順番',
+			'last_update' => '更新日時',
 		);
 	}
 
@@ -92,5 +92,22 @@ class Genre extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function getTypeList()
+	{
+		return array (
+				Item::TYPE_ITEM_APP => 'アプリ',
+				Item::TYPE_ITEM_CD_MUSIC => 'CD音楽',
+				Item::TYPE_ITEM_VIDEO_MUSIC => 'MUSICビデオ',
+		);
+	}
+	
+	public function getType()
+	{
+		$type_list = $this->getTypeList();
+		$type = isset($type_list[$this->type]) ? $type_list[$this->type] : "未定義"; 
+	
+		return $type;
 	}
 }

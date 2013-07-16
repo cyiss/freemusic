@@ -14,7 +14,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
+	<?php echo CHtml::encode($data->getType()); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('genre_id')); ?>:</b>

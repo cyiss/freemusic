@@ -34,8 +34,14 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'id',
 		'name',
-		'type',
-		'genre_id',
+		array(
+			'name' => 'type',
+			'value' => '$data->getType()',
+			),
+		array(
+			'name' => 'genre_id',
+			'value' => '$data->getGenre()'
+			),
 		'content',
 		'price',
 		array(

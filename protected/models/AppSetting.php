@@ -13,9 +13,16 @@
  */
 class AppSetting extends CActiveRecord
 {
-	const TYPE_APP_SETTING_BOOL_VALUE	 = 1;
-	const TYPE_APP_SETTING_STRING_VALUE = 2;
-	const TYPE_APP_SETTING_INT_VALUE		 = 3;
+	const TYPE_APP_SETTING_BOOL_VALUE	= 1;
+	const TYPE_APP_SETTING_STRING_VALUE	= 2;
+	const TYPE_APP_SETTING_INT_VALUE	= 3;
+
+	const APP_SETTING_ID_SHOW_TOP_MODULE	= 1;
+	const APP_SETTING_ID_SHOW_FRIEND_MODULE = 2;
+
+	const APP_SETTING_ID_COLLECTION1		= 3;
+	const APP_SETTING_ID_COLLECTION2		= 4;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -117,10 +124,10 @@ class AppSetting extends CActiveRecord
 			case self::TYPE_APP_SETTING_BOOL_VALUE:
 				$type = "表示/非表示";
 				break;
-			case self::TYPE_APP_SETTING_BOOL_VALUE:
+			case self::TYPE_APP_SETTING_STRING_VALUE:
 				$type = "画像";
 				break;
-			case self::TYPE_APP_SETTING_BOOL_VALUE:
+			case self::TYPE_APP_SETTING_INT_VALUE:
 				$type = "INT"; 
 				break;
 			default:
@@ -140,16 +147,16 @@ class AppSetting extends CActiveRecord
 			case self::TYPE_APP_SETTING_BOOL_VALUE:
 				$value = $this->fmvalue ? "表示" : "非表示";
 				break;
-			case self::TYPE_APP_SETTING_BOOL_VALUE:
-				$value = $this->fmvalue;
+			case self::TYPE_APP_SETTING_STRING_VALUE:
+				$value = CHtml::image($this->fmvalue, "特集", array("width"=>302, "height"=>65));
 				break;
-			case self::TYPE_APP_SETTING_BOOL_VALUE:
+			case self::TYPE_APP_SETTING_INT_VALUE:
 				$value = $this->fmvalue;
 				break;
 			default:
 				$value = $this->fmvalue;
 				break;
 		}
-		return $value;
+		return html_entity_decode($value);
 	}
 }

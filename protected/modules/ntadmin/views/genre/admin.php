@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Genres</h1>
+<h1>ジャンル一覧</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'genre-grid',

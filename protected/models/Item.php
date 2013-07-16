@@ -151,9 +151,9 @@ class Item extends CActiveRecord
 	public function getType()
 	{
 		$type_list = $this->getTypeList();
-		$type = isset($type_list[$this->type]) ? $type_list[$this->type] : "未定義"; 
+		$ptype = isset($type_list[$this->type]) ? $type_list[$this->type] : "未定義"; 
 	
-		return $type;
+		return $ptype;
 	}
 	
 	public function getIcon()
@@ -169,5 +169,10 @@ class Item extends CActiveRecord
 	public function getStatus()
 	{
 		return $this->status ? "表示" : "非表示";
+	}
+
+	public function getGenre()
+	{
+		return Genre::model()->find($this->genre_id)->name;
 	}
 }

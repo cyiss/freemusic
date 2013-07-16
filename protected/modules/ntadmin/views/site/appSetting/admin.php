@@ -35,7 +35,11 @@ $('.search-form form').submit(function(){
 		'id',
 		'name',
 		'type',
-		'fmvalue',
+		array(
+			'name' => 'fmvalue',
+			'type' => 'raw',
+			'value' => '$data->getFMValue()',
+			),
 		'last_update',
 		'create_time',
 		array(

@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>詳細 Item #<?php echo $model->name; ?></h1>
+<h1>詳細 アイテム <?php echo $model->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,15 +25,11 @@ $this->menu=array(
 		'name',
 		array(
 			'name' => 'type',
-			'vlaue' => $model->getType(),
+			'value' => $model->getType(),
 			),
 		array(
 			'name' => 'genre_id',
-			'value' => CHtml::value(Genre::model()->find(array(
-    					'select'=>'name',
-    					'condition'=>'id=:genreID',
-    					'params'=>array(':genreID'=>$model->genre_id),
-    					)), 'name'),
+			'value' => $model->getGenre(),
 			),
 		'content',
 		'price',

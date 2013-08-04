@@ -26,7 +26,18 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','192.168.56.1'),
 		),
-		'api',
+		'api'=>array(
+			'digestKey'=>'01aea19a5dcaa6d4de2c43f096ab9d90',
+			'components'=>array(
+				'user'=>array(
+					'class'=>'CWebUser',
+					'loginUrl'=>'/api/default/error',
+				),
+				'errorHandler'=>array(
+					'errorAction'=>'/api/default/error',
+				),
+			),
+		),
 		'ntadmin'=>array(
 			// 'username'=>'ntadmin',
 			// 'password'=>'Ft05ab',
@@ -41,16 +52,19 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
 			'rules'=>array(
+				'api'=>'api',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'api/<controller:\w+>/<id:\d+>'=>'api/<controller>/view',
+				'api/<controller:\w+>/<action:\w+>/<id:\d+>'=>'api/<controller>/<action>',
+				'api/<controller:\w+>/<action:\w+>'=>'api/<controller>/<action>',
 			),
 		),
-		*/
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',

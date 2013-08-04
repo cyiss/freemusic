@@ -23,6 +23,11 @@ class APIController extends CController
 	 */
 	public $breadcrumbs=array();
 
+	/**
+	 *	All Controllers in Api module should return contents in json
+	 *	@var set the controller's public property data, afterAction
+	 *	will turn the content of data into json format.
+	 */
 	protected function afterAction(CAction $action)
 	{
 		parent::afterAction($action);

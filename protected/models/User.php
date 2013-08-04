@@ -42,6 +42,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('uuid', 'required'),
 			array('intro_user_id, point, device_type', 'numerical', 'integerOnly'=>true),
 			array('uuid, idfa', 'length', 'max'=>36),
 			array('android_id', 'length', 'max'=>20),

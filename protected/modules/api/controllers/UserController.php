@@ -2,9 +2,11 @@
 
 class UserController extends APIController
 {
-	public function actionIndex()
+	public function actionIndex($id)
 	{
-		$this->render('index');
+		$model = $this->loadModel($id);
+
+		$this->data = $model;
 	}
 
 	public function actionLogin()
@@ -25,10 +27,19 @@ class UserController extends APIController
 		{
 			$model->attributes=$_POST['User'];
 
-			if ($model->save())
+			if ($model->validate())
 			{
-				
+				$model->save();
+				$this->redirect(array('/api/user/index', 'id'=>$model->id));
 			}
+			else
+			{
+				throw new CHttpException('403', 'user validation failed');
+			}
+		}
+		else
+		{
+			throw new CHttpException('203', 'user data is not sufficient');
 		}
 	}
 

@@ -16,6 +16,19 @@ class ApiModule extends CWebModule
 			'api.models.*',
 			'api.components.*',
 		));
+
+		Yii::app()->setComponents(
+			array(
+				'user'=>array(
+					'class'=>'CWebUser',
+					'loginUrl'=>'/api/default/error',
+				),
+				'errorHandler'=>array(
+					'errorAction'=>'/api/default/error',
+				),
+			)
+		);
+
 	}
 
 	public function beforeControllerAction($controller, $action)

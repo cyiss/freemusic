@@ -28,15 +28,6 @@ return array(
 		),
 		'api'=>array(
 			'digestKey'=>'01aea19a5dcaa6d4de2c43f096ab9d90',
-			'components'=>array(
-				'user'=>array(
-					'class'=>'CWebUser',
-					'loginUrl'=>'/api/default/error',
-				),
-				'errorHandler'=>array(
-					'errorAction'=>'/api/default/error',
-				),
-			),
 		),
 		'ntadmin'=>array(
 			// 'username'=>'ntadmin',

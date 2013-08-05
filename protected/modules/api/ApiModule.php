@@ -29,8 +29,11 @@ class ApiModule extends CWebModule
 			)
 		);
 
-		if(isset($_POST['uuid']))
+		if(isset($_GET['uuid']))
+			$this->uuid = $_GET['uuid'];
+		elseif (isset($_POST['uuid'])) {
 			$this->uuid = $_POST['uuid'];
+		}
 	}
 
 	public function beforeControllerAction($controller, $action)

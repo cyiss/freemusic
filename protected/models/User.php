@@ -112,4 +112,18 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function findByUuid($uuid)
+	{
+		$user = null;
+		if (isset($uuid) && !is_null($uuid) && $uuid != "") {
+			$user = User::model()->find(
+				'uuid=:uuid',
+				array(
+				':uuid' => $uuid,
+				)
+			);
+		}
+		return $user;
+	}
 }

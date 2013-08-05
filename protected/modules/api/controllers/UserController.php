@@ -34,6 +34,20 @@ class UserController extends APIController
 
 		if (isset($_POST['User']))
 		{
+			/*
+			 * Check if uuid exists.
+			 */
+			if (isset($_POST['User']) && isset($_POST['User']['uuid']))
+			{
+				$user_uuid = $_POST['User']['uuid'];
+				$user = User::model()->findByUuid($user_uuid);
+				if ($user) {
+					throw new CHttpException('203', 'user exists');
+				}
+			}
+			/*
+			 * Insert a new user
+			 */
 			$model->attributes=$_POST['User'];
 
 			if ($model->validate())

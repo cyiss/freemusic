@@ -36,5 +36,4 @@ class APIController extends CController
         
         Yii::app()->end();
 	}
-
 }

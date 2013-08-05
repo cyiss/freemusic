@@ -9,6 +9,8 @@ class ApiUserIdentity extends CUserIdentity
 {
 	public $uuid;
 
+	private $_id;
+
 	public function __construct($uuid)
 	{
 		$this->uuid = $uuid;
@@ -35,10 +37,16 @@ class ApiUserIdentity extends CUserIdentity
 			Yii::log('user does not exist','info');
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		} else {
+			$this->_id = $user->id;
 			Yii::log('exists','info');
 			$this->errorCode=self::ERROR_NONE;
 		}
 
 		return !$this->errorCode;
+	}
+
+	public function getId()
+	{
+		return $this->_id;
 	}
 }

@@ -19,16 +19,18 @@ class ApiModule extends CWebModule
 
 		Yii::app()->setComponents(
 			array(
-				'user'=>array(
-					'class'=>'CWebUser',
-					'loginUrl'=>'/api/default/error',
-				),
+			//	'user'=>array(
+			//		'class'=>'CWebUser',
+			//		'loginUrl'=>'/api/default/error',
+			//	),
 				'errorHandler'=>array(
 					'errorAction'=>'/api/default/error',
 				),
 			)
 		);
 
+		if(isset($_POST['uuid']))
+			$this->uuid = $_POST['uuid'];
 	}
 
 	public function beforeControllerAction($controller, $action)
@@ -53,7 +55,7 @@ class ApiModule extends CWebModule
 				throw new CHttpException(401, "Unauthorized Access");
 			}
 			*/
-			if($this->uuid!==false && Yii::app()->user->isGuest && !in_array($route,$publicPages) )
+			if($this->uuid!==false && Yii::app()->getModule('api')->user->isGuest && !in_array($route,$publicPages) )
 			{
 				$this->login(); // Yii::app()->user->loginRequired();
 				Yii::log('guest login ok', 'info');
@@ -61,11 +63,12 @@ class ApiModule extends CWebModule
 			else
 			{
 				Yii::log('guest don\'t have uuid', 'info');
-				return true;
 			}
 		}
 		else
 			return false;
+
+		return true;
 	}
 
 	/*
@@ -107,7 +110,7 @@ class ApiModule extends CWebModule
 	{
 		$identity = new ApiUserIdentity($this->uuid);
 		if ($identity->authenticate())
-			Yii::app()->user->login($identity);
+			Yii::app()->getModule('api')->user->login($identity);
 		else
 		{
 			Yii::app()->getModule('api')->user->loginRequired();

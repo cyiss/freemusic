@@ -46,7 +46,12 @@ class User extends CActiveRecord
 			array('intro_user_id, point, device_type', 'numerical', 'integerOnly'=>true),
 			array('uuid, idfa', 'length', 'max'=>36),
 			array('android_id', 'length', 'max'=>20),
-			array('last_update, create_time', 'safe'),
+			array('last_update', 'default', 
+				'value'=>new CDbExpression('NOW()'),
+				'setOnEmpty'=>false, 'on'=>'update'),
+			array('last_update, create_time', 'default', 
+				'value'=>new CDbExpression('NOW()'),
+				'setOnEmpty'=>false, 'on'=>'insert'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, intro_user_id, point, uuid, idfa, android_id, device_type, last_update, create_time', 'safe', 'on'=>'search'),

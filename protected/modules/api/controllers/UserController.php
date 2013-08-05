@@ -2,11 +2,20 @@
 
 class UserController extends APIController
 {
-	public function actionIndex($id)
+	public function actionIndex()
 	{
-		$model = $this->loadModel($id);
-
-		$this->data = $model;
+		Yii::log("api/user/index", 'info');
+		if (isset($_POST['id']) && 
+			isset($_POST['id']) == Yii::app()->getModule('api')->user->id)
+		{
+			$user_id = $_POST['id'];
+			$model = User::model()->findByPk($user_id);
+			$this->data = $model;
+		}
+		else
+		{
+			throw new CHttpException("203", "Current user information is not available");
+		}
 	}
 
 	public function actionLogin()
@@ -34,6 +43,9 @@ class UserController extends APIController
 			}
 			else
 			{
+				$errors = $model->getErrors();
+				Yii::app()->getModule('api')->user->setState('errors', $errors);
+				Yii::app()->getModule('api')->user->setState('post', $_POST);
 				throw new CHttpException('403', 'user validation failed');
 			}
 		}

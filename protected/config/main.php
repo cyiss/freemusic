@@ -28,6 +28,12 @@ return array(
 		),
 		'api'=>array(
 			'digestKey'=>'01aea19a5dcaa6d4de2c43f096ab9d90',
+			'components'=>array(
+			    'user'=>array(
+				'class'=>'CWebUser',
+				'loginUrl'=>'/api/default/error',
+			    ),
+			),
 		),
 		'ntadmin'=>array(
 			// 'username'=>'ntadmin',
@@ -56,6 +62,9 @@ return array(
 				'api/<controller:\w+>/<action:\w+>'=>'api/<controller>/<action>',
 			),
 		),
+		'browser'=>array(
+			'class' => 'application.extensions.browser.CBrowserComponent',
+		),
 		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
@@ -66,7 +75,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=freemusic',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'austin520',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

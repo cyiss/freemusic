@@ -5,10 +5,10 @@ class UserController extends APIController
 	public function actionIndex()
 	{
 		Yii::log("api/user/index", 'info');
-		if (isset($_POST['id']) && 
-			isset($_POST['id']) == Yii::app()->getModule('api')->user->id)
+		if (isset($_GET['id']) && 
+			isset($_GET['id']) == Yii::app()->getModule('api')->user->id)
 		{
-			$user_id = $_POST['id'];
+			$user_id = $_GET['id'];
 			$model = User::model()->findByPk($user_id);
 			$this->data = $model;
 		}
@@ -53,7 +53,7 @@ class UserController extends APIController
 			if ($model->validate())
 			{
 				$model->save();
-				$this->redirect(array('/api/user/index', 'id'=>$model->id));
+				$this->redirect(array('/api/user/index', 'id'=>$model->id, 'uuid'=>$model->uuid));
 			}
 			else
 			{

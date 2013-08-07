@@ -20,7 +20,7 @@ class Digest
 
 	public function hexdigest($params)
 	{
-		$params['key'] = $this->key;
+		// $params['key'] = $this->key;
 		ksort($params);
 
 		foreach ($params as $key => $value) {
@@ -28,7 +28,8 @@ class Digest
 		}
 
 		$join_string = implode(";", array_values($params));
-		
+		$join_string .= ";" . $this->key;
+
 		Yii::log("join: $join_string", "info");
 
 		$digest_string = md5($join_string);

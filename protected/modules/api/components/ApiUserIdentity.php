@@ -49,4 +49,9 @@ class ApiUserIdentity extends CUserIdentity
 	{
 		return $this->_id;
 	}
+
+	public function getUuid()
+	{
+		return $this->uuid;
+	}
 }

@@ -52,12 +52,12 @@ class ApiModule extends CWebModule
 			Yii::log($route . $this->digestKey, 'info');
 
 			// if request's digest is not right, throw a 401 http exception
-			/*
+			
 			if( !$this->checkDigest($this->digestKey, $_GET) )
 			{
 				throw new CHttpException(401, "Unauthorized Access");
 			}
-			*/
+
 			if($this->uuid!==false && Yii::app()->getModule('api')->user->isGuest && !in_array($route,$publicPages) )
 			{
 				$this->login(); // Yii::app()->user->loginRequired();
